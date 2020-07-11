@@ -14,13 +14,53 @@ public class FitnessActivity {
     private Time end;
     private int calories;
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Time getStart() {
+        return start;
+    }
+
+    public void setStart(Time start) {
+        this.start = start;
+    }
+
+    public Time getEnd() {
+        return end;
+    }
+
+    public void setEnd(Time end) {
+        this.end = end;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
     /**
      * Constructor.
      *
-     * @param title       The title of the activity.
+     * @param title The title of the activity.
      * @param description The description of the activity.
-     * @param start       When the activity starts.
-     * @param end         When the activity ends.
+     * @param start When the activity starts.
+     * @param end When the activity ends.
      */
     public FitnessActivity(String title, String description, Time start, Time end) {
         this.title = title;
