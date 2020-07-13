@@ -1,15 +1,18 @@
 package com.example.fitnessapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapp.models.FitnessActivity;
 import com.example.fitnessapp.recyclerViewAdapters.FitnessActivityRecyclerAdapter;
@@ -18,7 +21,11 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+/**
+ * This is the controller for the activity that you see when the app is first opened.
+ * Aka, this is the home screen of the app.
+ */
+public class MainActivity extends AppCompatActivity implements FitnessActivityRecyclerAdapter.OnFitnessActivityClickListener {
 
     private TextView mTextMessage;
     private RecyclerView mainRecyclerView;
@@ -59,6 +66,8 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
+        setSupportActionBar((Toolbar) findViewById(R.id.fitness_activity_toolbar));
+
         insertTestingData();
         initializeRecyclerView();
     }
@@ -69,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void insertTestingData() {
         fitnessActivities = new ArrayList<>();
-        for(int i = 0; i < 60; i++) {
+        for (int i = 0; i < 60; i++) {
             fitnessActivities.add(new FitnessActivity("dab" + i, "desc", null, null));
         }
     }
@@ -79,8 +88,30 @@ public class MainActivity extends AppCompatActivity {
      */
     private void initializeRecyclerView() {
         mainRecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        fitnessActivityRecyclerAdapter = new FitnessActivityRecyclerAdapter(fitnessActivities);
+        fitnessActivityRecyclerAdapter = new FitnessActivityRecyclerAdapter(fitnessActivities, this);
         mainRecyclerView.setAdapter(fitnessActivityRecyclerAdapter);
     }
 
+    /**
+     * Called whenever one of the fitness_activity_item's are clicked.
+     * @param position the position of the clicked fitness_activity_item in the recyclerView.
+     */
+    @Override
+    public void onFitnessActivityClick(int position) {
+        FitnessActivity clickedFitnessActivity = fitnessActivities.get(position);
+        //TODO: DO OTHER THINGS!!
+
+        Toast toast = Toast.makeText(getApplicationContext(), "Clicked " + fitnessActivities.get(position).getTitle(), Toast.LENGTH_SHORT);
+        toast.show();
+
+        Intent intent = new Intent(this, EditFitnessActivityActivity.class);
+        intent.putExtra("selected_fitness_activity", fitnessActivities.get(position));
+        startActivity(intent);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fitnessActivityRecyclerAdapter.notifyDataSetChanged();
+    }
 }

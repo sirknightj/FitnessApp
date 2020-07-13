@@ -1,18 +1,39 @@
 package com.example.fitnessapp.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.sql.Time;
 
 
 /**
  * This is the model for a fitness activity.
  */
-public class FitnessActivity {
+public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable {
 
     private String title;
     private String description;
     private Time start;
     private Time end;
     private int calories;
+
+    protected FitnessActivity(Parcel in) {
+        title = in.readString();
+        description = in.readString();
+        calories = in.readInt();
+    }
+
+    public static final Creator<FitnessActivity> CREATOR = new Creator<FitnessActivity>() {
+        @Override
+        public FitnessActivity createFromParcel(Parcel in) {
+            return new FitnessActivity(in);
+        }
+
+        @Override
+        public FitnessActivity[] newArray(int size) {
+            return new FitnessActivity[size];
+        }
+    };
 
     public String getTitle() {
         return title;
@@ -81,5 +102,29 @@ public class FitnessActivity {
                 ", start=" + start +
                 ", end=" + end +
                 '}';
+    }
+
+    /**
+     * Compares this FitnessActivity to another FitnessActivity.
+     * @param o the other FitnessActivity to compare to.
+     * @return a positive integer if this is larger than the other.
+     *         a negative integer if the other is larger than this.
+     *         0 if they are equal.
+     */
+    @Override
+    public int compareTo(FitnessActivity o) {
+        return getStart().compareTo(o.getStart());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(description);
+        dest.writeInt(calories);
     }
 }

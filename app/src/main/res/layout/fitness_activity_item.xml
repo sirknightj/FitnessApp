@@ -7,22 +7,23 @@
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="10dp"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:backgroundTint="@color/colorAccent">
 
     <ImageView
         android:id="@+id/activity_image"
-        android:layout_width="wrap_content"
+        android:layout_width="?android:attr/actionBarSize"
+        android:layout_weight="30"
         android:layout_height="match_parent"
-        android:layout_weight="20"
         android:contentDescription="temporary"
         android:padding="5dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_directions_bike_black_24dp"/>
+        android:src="@drawable/ic_directions_bike_black_24dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="80"
+        android:layout_weight="70"
         android:orientation="vertical"
         android:weightSum="3">
 
@@ -49,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="20"
                 android:gravity="right"
-                android:text="test calories"
+                android:text="120 cal"
                 android:textColor="#000" />
 
         </LinearLayout>
@@ -68,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="text timestamp"
+            android:text="test timestamp"
             android:textColor="#000" />
     </LinearLayout>
 </LinearLayout>
