@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 import com.example.fitnessapp.models.FitnessActivity;
 import com.example.fitnessapp.recyclerViewAdapters.FitnessActivityRecyclerAdapter;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
     private void insertTestingData() {
         fitnessActivities = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            fitnessActivities.add(new FitnessActivity("dab" + i, "desc", null, null));
+            fitnessActivities.add(new FitnessActivity("dab" + i, "desc", "1:00 pm", "2:00 pm"));
         }
     }
 
@@ -104,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
         Toast toast = Toast.makeText(getApplicationContext(), "Clicked " + fitnessActivities.get(position).getTitle(), Toast.LENGTH_SHORT);
         toast.show();
 
-        Intent intent = new Intent(this, EditFitnessActivityActivity.class);
+        Intent intent = new Intent(this, ViewFitnessActivityActivity.class);
         intent.putExtra("selected_fitness_activity", fitnessActivities.get(position));
         startActivity(intent);
     }

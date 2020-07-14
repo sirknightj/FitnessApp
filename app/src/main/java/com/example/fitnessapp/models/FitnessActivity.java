@@ -3,26 +3,30 @@ package com.example.fitnessapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.sql.Time;
-
 
 /**
  * This is the model for a fitness activity.
  */
 public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable {
 
-    private String title;
-    private String description;
-    private Time start;
-    private Time end;
+    private String title, description, start, end;
     private int calories;
 
+    /**
+     * Constructor. Creates FitnessActivity when passed in a Parcel.
+     * @param in The parcel used to create the FitnessActivity.
+     */
     protected FitnessActivity(Parcel in) {
         title = in.readString();
         description = in.readString();
+        start = in.readString();
+        end = in.readString();
         calories = in.readInt();
     }
 
+    /**
+     * Returns new FitnessActivities when passed in Parcels.
+     */
     public static final Creator<FitnessActivity> CREATOR = new Creator<FitnessActivity>() {
         @Override
         public FitnessActivity createFromParcel(Parcel in) {
@@ -35,42 +39,77 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         }
     };
 
+    /**
+     * @return The title of this fitness activity.
+     */
     public String getTitle() {
         return title;
     }
 
+    /**
+     * Updates the title of this fitness activity.
+     * @param title The new title of this fitness activity.
+     */
     public void setTitle(String title) {
         this.title = title;
     }
 
+    /**
+     * @return The description of this fitness activity.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Updates the description of this fitness activity.
+     * @param description The new description of this fitness activity.
+     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    public Time getStart() {
+    /**
+     * @return The starting time of the fitness activity in long format.
+     */
+    public String getStart() {
         return start;
     }
 
-    public void setStart(Time start) {
+    /**
+     * Updates the starting time of the fitness activity. Must be in long format.
+     * @param start The new start time, in long format.
+     */
+    public void setStart(String start) {
         this.start = start;
     }
 
-    public Time getEnd() {
+    /**
+     * @return The ending time of the fitness activity in long format.
+     */
+    public String getEnd() {
         return end;
     }
 
-    public void setEnd(Time end) {
+    /**
+     * Updates the ending time of the fitness activity. Must be in long format.
+     * @param end The new ending time, in long format.
+     */
+    public void setEnd(String end) {
         this.end = end;
     }
 
+    /**
+     * @return The number of calories burned during this fitness activity.
+     */
     public int getCalories() {
         return calories;
     }
 
+    /**
+     * Updates the number of calories burned during this fitness activity.
+     * @param calories The new calorie number.
+     */
     public void setCalories(int calories) {
         this.calories = calories;
     }
@@ -83,7 +122,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      * @param start When the activity starts.
      * @param end When the activity ends.
      */
-    public FitnessActivity(String title, String description, Time start, Time end) {
+    public FitnessActivity(String title, String description, String start, String end) {
         this.title = title;
         this.description = description;
         this.start = start;
@@ -116,15 +155,26 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         return getStart().compareTo(o.getStart());
     }
 
+    /**
+     * Describes what type of special objects are in the Parcelable representation.
+     * @return 0, since we have nothing special.
+     */
     @Override
     public int describeContents() {
         return 0;
     }
 
+    /**
+     * Attaches the contents of this fitness activity to a Parcel.
+     * @param dest The Parcel to be written to.
+     * @param flags Additional flags about how this object should be written.
+     */
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeString(description);
+        dest.writeString(start);
+        dest.writeString(end);
         dest.writeInt(calories);
     }
 }

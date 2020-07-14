@@ -58,7 +58,7 @@ public class FitnessActivityRecyclerAdapter extends RecyclerView.Adapter<Fitness
         FitnessActivity currentActivity = fitnessActivities.get(i);
         viewHolder.title.setText(currentActivity.getTitle());
         viewHolder.description.setText(currentActivity.getDescription());
-        viewHolder.timestamp.setText(currentActivity.getStart() + " " + currentActivity.getEnd());
+        viewHolder.timestamp.setText(currentActivity.getStart() + " - " + currentActivity.getEnd());
         viewHolder.calories.setText(currentActivity.getCalories() + " cal");
     }
 

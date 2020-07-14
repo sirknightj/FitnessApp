@@ -4,5 +4,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_header">My Fitness Activities</string>
+    <string name="title_view_fitactivity">View Fitness Activity</string>
     <string name="title_edit_fitactivity">Edit Fitness Activity</string>
 </resources>
