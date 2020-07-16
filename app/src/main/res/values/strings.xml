@@ -6,4 +6,11 @@
     <string name="title_header">My Fitness Activities</string>
     <string name="title_view_fitactivity">View Fitness Activity</string>
     <string name="title_edit_fitactivity">Edit Fitness Activity</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_startTime">Start</string>
+    <string name="hint_endTime">End</string>
+    <string name="description_auto_fill_title">Autofill title based on activity</string>
+    <string name="description_fitness_activity_spinner">Fitness Activity</string>
+    <string name="description_intensity">Intensity</string>
 </resources>

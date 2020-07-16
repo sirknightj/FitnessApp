@@ -3,7 +3,6 @@ package com.example.fitnessapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-
 /**
  * This is the model for a fitness activity.
  */
