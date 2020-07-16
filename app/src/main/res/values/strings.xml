@@ -13,4 +13,7 @@
     <string name="description_auto_fill_title">Autofill title based on activity</string>
     <string name="description_fitness_activity_spinner">Fitness Activity</string>
     <string name="description_intensity">Intensity</string>
+    <string name="description_calories_burned">Calories</string>
+    <string name="description_manual_input">Manual</string>
+    <string name="tooltip_manual_input">Input the value manually.</string>
 </resources>
