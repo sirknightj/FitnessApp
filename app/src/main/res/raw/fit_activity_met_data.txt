@@ -1,0 +1,50 @@
+Bicycling; 12-13.9 mph (leisure, moderate effort)
+8.0
+Bicycling; mountain-biking, uphill, vigorous effort
+14.0
+Stationary cycling; (moderate-to-vigorous effort / 90-100 watts)
+6.8
+Circuit training, including kettlebells, vigorous intensity, minimal rest
+8.0
+Resistance (weight) training – squats, explosive effort
+5.0
+Resistance (weight) training – multiple exercises, 8-15 reps
+3.5
+Jumping rope
+12.3
+Hatha Yoga
+2.5
+Home activity – cleaning, sweeping, moderate effort
+3.5
+Home activity – laundry – folding, putting away clothes (incl. walking)
+2.3
+Playing w/children, moderate effort (only active periods)
+3.5
+Yardwork – mowing lawn, moderate-to-vigorous effort
+5.0
+Gardening – general, moderate effort
+3.8
+Running – 6 mph (10 min./mile)
+9.8
+Running – 14 mph (4.3 min./mile)
+23.0
+Golf – walking (carrying clubs)
+4.3
+Tennis – singles
+8.0
+Basketball – general
+6.5
+Walking for exercise – brisk pace (3.5 mph)
+4.3
+Swimming laps – freestyle/crawl light – moderate effort
+5.8
+Hiking (hills w/10-20lb. load)
+7.3
+Exercise/activity-based video game – moderate effort (e.g. Wii Fit)
+3.8
+Video-exercise (DVD/TV) cardio-resistance, moderate effort
+4.0
+Sitting – at desk / watching TV / reading
+1.3
+Standing – working on computer / reading / talking on phone
+1.8

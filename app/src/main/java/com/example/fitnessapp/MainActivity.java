@@ -8,7 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.fitnessapp.models.FitnessActivity;
-import com.example.fitnessapp.recyclerViewAdapters.FitnessActivityRecyclerAdapter;
+import com.example.fitnessapp.adapters.FitnessActivityRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
@@ -69,6 +69,14 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
 
         insertTestingData();
         initializeRecyclerView();
+
+        try {
+            FitActivityData.initializeData(getResources());
+        } catch(Exception e) {
+            e.printStackTrace();
+            Toast toast = Toast.makeText(getApplicationContext(), "ERROR: FILE NOT FOUND", Toast.LENGTH_LONG);
+            toast.show();
+        }
     }
 
     /**

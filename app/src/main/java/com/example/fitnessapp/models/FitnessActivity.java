@@ -12,8 +12,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
     private int calories;
 
     /**
-     * Constructor. Creates FitnessActivity when passed in a Parcel.
-     * @param in The parcel used to create the FitnessActivity.
+     * Constructor. Creates FitnessActivityData when passed in a Parcel.
+     * @param in The parcel used to create the FitnessActivityData.
      */
     protected FitnessActivity(Parcel in) {
         title = in.readString();
@@ -134,7 +134,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      */
     @Override
     public String toString() {
-        return "FitnessActivity{" +
+        return "FitnessActivityData{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", start=" + start +
@@ -143,8 +143,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
     }
 
     /**
-     * Compares this FitnessActivity to another FitnessActivity.
-     * @param o the other FitnessActivity to compare to.
+     * Compares this FitnessActivityData to another FitnessActivityData.
+     * @param o the other FitnessActivityData to compare to.
      * @return a positive integer if this is larger than the other.
      *         a negative integer if the other is larger than this.
      *         0 if they are equal.

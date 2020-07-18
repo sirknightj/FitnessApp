@@ -15,5 +15,7 @@
     <string name="description_intensity">Intensity</string>
     <string name="description_calories_burned">Calories</string>
     <string name="description_manual_input">Manual</string>
+    <string name="accessibility_manual_override_calories">Checking this box will let you manually override the calories burned.</string>
+    <string name="accessibility_calories_box">Input how many calories you burned here. Automatic unless you check the box to the right.</string>
     <string name="tooltip_manual_input">Input the value manually.</string>
 </resources>

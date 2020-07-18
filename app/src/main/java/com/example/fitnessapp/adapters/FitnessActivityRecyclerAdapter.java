@@ -1,4 +1,4 @@
-package com.example.fitnessapp.recyclerViewAdapters;
+package com.example.fitnessapp.adapters;
 
 
 import android.view.LayoutInflater;
@@ -51,7 +51,7 @@ public class FitnessActivityRecyclerAdapter extends RecyclerView.Adapter<Fitness
      * Called by the RecyclerView to display items at a certain position. Sets all of the contents to be displayed
      * in each fitness_activity_item.
      *
-     * @param viewHolder The viewHolder to display, containing the contents of each FitnessActivity.
+     * @param viewHolder The viewHolder to display, containing the contents of each FitnessActivityData.
      * @param i          The position of the item in the RecyclerView.
      */
     @Override
@@ -80,7 +80,7 @@ public class FitnessActivityRecyclerAdapter extends RecyclerView.Adapter<Fitness
         private boolean clicked;
 
         /**
-         * Constructor. Provides a reference to the views for each property of a FitnessActivity.
+         * Constructor. Provides a reference to the views for each property of a FitnessActivityData.
          */
         public ViewHolder(@NonNull View itemView, OnFitnessActivityClickListener onFitnessActivityClickListener) {
             super(itemView);
@@ -115,7 +115,7 @@ public class FitnessActivityRecyclerAdapter extends RecyclerView.Adapter<Fitness
         /**
          * This is called whenever one of the fitness_activity_item's are clicked in the recyclerView.
          *
-         * @param position The position of the clicked FitnessActivity item in the recyclerView.
+         * @param position The position of the clicked FitnessActivityData item in the recyclerView.
          */
         void onFitnessActivityClick(int position);
     }
