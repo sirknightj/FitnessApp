@@ -10,9 +10,35 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     private String title, description, start, end;
     private int calories;
+    private boolean isAutoInputTitle, isManualCalories, isManualEndTime;
+
+    public boolean isAutoInputTitle() {
+        return isAutoInputTitle;
+    }
+
+    public boolean isManualCalories() {
+        return isManualCalories;
+    }
+
+    public void setAutoInputTitle(boolean autoInputTitle) {
+        isAutoInputTitle = autoInputTitle;
+    }
+
+    public void setManualCalories(boolean manualCalories) {
+        isManualCalories = manualCalories;
+    }
+
+    public void setManualEndTime(boolean manualEndTime) {
+        isManualEndTime = manualEndTime;
+    }
+
+    public boolean isManualEndTime() {
+        return isManualEndTime;
+    }
 
     /**
      * Constructor. Creates FitnessActivityData when passed in a Parcel.
+     *
      * @param in The parcel used to create the FitnessActivityData.
      */
     protected FitnessActivity(Parcel in) {
@@ -21,6 +47,9 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         start = in.readString();
         end = in.readString();
         calories = in.readInt();
+        isAutoInputTitle = in.readByte() != 0;
+        isManualCalories = in.readByte() != 0;
+        isManualEndTime = in.readByte() != 0;
     }
 
     /**
@@ -47,6 +76,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Updates the title of this fitness activity.
+     *
      * @param title The new title of this fitness activity.
      */
     public void setTitle(String title) {
@@ -62,6 +92,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Updates the description of this fitness activity.
+     *
      * @param description The new description of this fitness activity.
      */
     public void setDescription(String description) {
@@ -77,6 +108,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Updates the starting time of the fitness activity. Must be in long format.
+     *
      * @param start The new start time, in long format.
      */
     public void setStart(String start) {
@@ -92,6 +124,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Updates the ending time of the fitness activity. Must be in long format.
+     *
      * @param end The new ending time, in long format.
      */
     public void setEnd(String end) {
@@ -107,6 +140,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Updates the number of calories burned during this fitness activity.
+     *
      * @param calories The new calorie number.
      */
     public void setCalories(int calories) {
@@ -114,18 +148,36 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
     }
 
     /**
-     * Constructor.
+     * Constructor. Creates a fitness activity with the creator's preferences.
      *
-     * @param title The title of the activity.
+     * @param title       The title of the activity.
      * @param description The description of the activity.
-     * @param start When the activity starts.
-     * @param end When the activity ends.
+     * @param start       When the activity starts.
+     * @param end         When the activity ends.
      */
     public FitnessActivity(String title, String description, String start, String end) {
+        this(title, description, start, end, true, false, false);
+    }
+
+    /**
+     * Constructor.
+     *
+     * @param title            The title of the activity.
+     * @param description      The description of the activity.
+     * @param start            When the activity starts.
+     * @param end              When the activity ends.
+     * @param isAutoInputTitle True if the title should be the same as the activity.
+     * @param isManualCalories True if the calorie input is manual.
+     * @param isManualEndTime  True if the activity's ending time is manual.
+     */
+    public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isManualCalories, boolean isManualEndTime) {
         this.title = title;
         this.description = description;
         this.start = start;
         this.end = end;
+        this.isAutoInputTitle = isAutoInputTitle;
+        this.isManualCalories = isManualCalories;
+        this.isManualEndTime = isManualEndTime;
         calories = 0; // TODO: Use formula to find calories
     }
 
@@ -144,10 +196,11 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Compares this FitnessActivityData to another FitnessActivityData.
+     *
      * @param o the other FitnessActivityData to compare to.
      * @return a positive integer if this is larger than the other.
-     *         a negative integer if the other is larger than this.
-     *         0 if they are equal.
+     * a negative integer if the other is larger than this.
+     * 0 if they are equal.
      */
     @Override
     public int compareTo(FitnessActivity o) {
@@ -156,6 +209,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Describes what type of special objects are in the Parcelable representation.
+     *
      * @return 0, since we have nothing special.
      */
     @Override
@@ -165,7 +219,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
 
     /**
      * Attaches the contents of this fitness activity to a Parcel.
-     * @param dest The Parcel to be written to.
+     *
+     * @param dest  The Parcel to be written to.
      * @param flags Additional flags about how this object should be written.
      */
     @Override
@@ -175,5 +230,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         dest.writeString(start);
         dest.writeString(end);
         dest.writeInt(calories);
+        dest.writeByte((byte) (isAutoInputTitle ? 1 : 0));
+        dest.writeByte((byte) (isManualCalories ? 1 : 0));
+        dest.writeByte((byte) (isManualEndTime ? 1 : 0));
     }
 }

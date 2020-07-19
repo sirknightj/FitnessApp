@@ -11,8 +11,11 @@
     <string name="hint_startTime">Start</string>
     <string name="hint_endTime">End</string>
     <string name="description_auto_fill_title">Autofill title based on activity</string>
+    <string name="description_activity_ended_now">Automatically input start time?</string>
     <string name="description_fitness_activity_spinner">Fitness Activity</string>
     <string name="description_intensity">Intensity</string>
+    <string name="description_duration">Duration</string>
+    <string name="description_minutes">Min</string>
     <string name="description_calories_burned">Calories</string>
     <string name="description_manual_input">Manual</string>
     <string name="accessibility_manual_override_calories">Checking this box will let you manually override the calories burned.</string>

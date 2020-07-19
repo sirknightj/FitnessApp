@@ -13,9 +13,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class ViewFitnessActivityActivity extends AppCompatActivity {
 
-    public TextView fitactivity_title, fitactivity_description, fitactivity_timestamp, fitactivity_date, fitactivity_calories;
-    public FloatingActionButton edit_floating_action_button;
-    public FitnessActivity selectedFitnessActivity;
+    public static final String FROM_PARCEL = "editing_fitness_activity";
+
+    private TextView fitactivity_title, fitactivity_description, fitactivity_timestamp, fitactivity_date, fitactivity_calories;
+    private FloatingActionButton edit_floating_action_button;
+    private FitnessActivity selectedFitnessActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,7 @@ public class ViewFitnessActivityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 edit_floating_action_button.setEnabled(false);
                 Intent editActivity = new Intent(getApplicationContext(), EditFitnessActivityActivity.class);
-                editActivity.putExtra("editing_fitness_activity", getSelectedFitnessActivity());
+                editActivity.putExtra(FROM_PARCEL, getSelectedFitnessActivity());
                 startActivity(editActivity);
             }
         });

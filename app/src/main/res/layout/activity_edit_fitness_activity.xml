@@ -48,15 +48,23 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:labelFor="@id/check_auto_fill_title"
                 android:text="@string/description_auto_fill_title" />
 
             <CheckBox
                 android:id="@+id/check_auto_fill_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:buttonTint="@color/colorPrimary"
                 android:tooltipText="@string/tooltip_manual_input" />
 
         </LinearLayout>
+
+        <EditText
+            android:id="@+id/input_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_description" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -67,16 +75,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="5dp"
                 android:labelFor="@id/input_fitness_activity_spinner"
                 android:text="@string/description_fitness_activity_spinner"
-                android:textSize="20sp"
-                android:layout_marginRight="5dp"/>
+                android:textSize="20sp" />
 
             <Spinner
                 android:id="@+id/input_fitness_activity_spinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center">
 
             </Spinner>
 
@@ -111,16 +120,30 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginRight="5dp"
-                android:text="@string/description_calories_burned"
+                android:inputType="number"
+                android:labelFor="@id/input_duration"
+                android:text="@string/description_duration"
                 android:textSize="20sp" />
 
             <EditText
+                android:id="@+id/input_duration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:maxLength="5"
                 android:inputType="number"
-                android:text="60"
-                android:contentDescription="@string/accessibility_calories_box"/>
+                android:text="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:labelFor="@id/input_duration"
+                android:text="@string/description_minutes"
+                android:textSize="20sp" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -133,6 +156,58 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:labelFor="@id/check_manual_end_time"
+                    android:text="@string/description_activity_ended_now"
+                    android:tooltipText="@string/tooltip_manual_input" />
+
+                <CheckBox
+                    android:id="@+id/check_manual_end_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorPrimary"
+                    android:contentDescription="@string/tooltip_manual_input" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginRight="5dp"
+                android:inputType="number"
+                android:labelFor="@id/input_calories"
+                android:text="@string/description_calories_burned"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/input_calories"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:contentDescription="@string/accessibility_calories_box"
+                android:inputType="number"
+                android:text="60" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:labelFor="@id/check_manual_calories"
                     android:text="@string/description_manual_input"
                     android:tooltipText="@string/tooltip_manual_input" />
 
@@ -140,6 +215,7 @@
                     android:id="@+id/check_manual_calories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:buttonTint="@color/colorPrimary"
                     android:contentDescription="@string/tooltip_manual_input" />
             </LinearLayout>
 
