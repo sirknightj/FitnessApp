@@ -3,37 +3,41 @@ package com.example.fitnessapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+
 /**
  * This is the model for a fitness activity.
  */
 public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable {
 
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yy h:m a");
     private String title, description, start, end;
     private int calories;
-    private boolean isAutoInputTitle, isManualCalories, isManualEndTime;
+    private boolean isAutoInputTitle, isAutomaticCalories, isAutomaticEndTime;
 
     public boolean isAutoInputTitle() {
         return isAutoInputTitle;
     }
 
-    public boolean isManualCalories() {
-        return isManualCalories;
+    public boolean isAutomaticCalories() {
+        return isAutomaticCalories;
     }
 
     public void setAutoInputTitle(boolean autoInputTitle) {
         isAutoInputTitle = autoInputTitle;
     }
 
-    public void setManualCalories(boolean manualCalories) {
-        isManualCalories = manualCalories;
+    public void setAutomaticCalories(boolean automaticCalories) {
+        isAutomaticCalories = automaticCalories;
     }
 
-    public void setManualEndTime(boolean manualEndTime) {
-        isManualEndTime = manualEndTime;
+    public void setAutomaticEndTime(boolean automaticEndTime) {
+        isAutomaticEndTime = automaticEndTime;
     }
 
-    public boolean isManualEndTime() {
-        return isManualEndTime;
+    public boolean isAutomaticEndTime() {
+        return isAutomaticEndTime;
     }
 
     /**
@@ -48,8 +52,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         end = in.readString();
         calories = in.readInt();
         isAutoInputTitle = in.readByte() != 0;
-        isManualCalories = in.readByte() != 0;
-        isManualEndTime = in.readByte() != 0;
+        isAutomaticCalories = in.readByte() != 0;
+        isAutomaticEndTime = in.readByte() != 0;
     }
 
     /**
@@ -156,7 +160,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      * @param end         When the activity ends.
      */
     public FitnessActivity(String title, String description, String start, String end) {
-        this(title, description, start, end, true, false, false);
+        this(title, description, start, end, true, true, true);
     }
 
     /**
@@ -167,17 +171,17 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      * @param start            When the activity starts.
      * @param end              When the activity ends.
      * @param isAutoInputTitle True if the title should be the same as the activity.
-     * @param isManualCalories True if the calorie input is manual.
+     * @param isAutomaticCalories True if the calorie input is manual.
      * @param isManualEndTime  True if the activity's ending time is manual.
      */
-    public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isManualCalories, boolean isManualEndTime) {
+    public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isAutomaticCalories, boolean isManualEndTime) {
         this.title = title;
         this.description = description;
         this.start = start;
         this.end = end;
         this.isAutoInputTitle = isAutoInputTitle;
-        this.isManualCalories = isManualCalories;
-        this.isManualEndTime = isManualEndTime;
+        this.isAutomaticCalories = isAutomaticCalories;
+        this.isAutomaticEndTime = isManualEndTime;
         calories = 0; // TODO: Use formula to find calories
     }
 
@@ -231,7 +235,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         dest.writeString(end);
         dest.writeInt(calories);
         dest.writeByte((byte) (isAutoInputTitle ? 1 : 0));
-        dest.writeByte((byte) (isManualCalories ? 1 : 0));
-        dest.writeByte((byte) (isManualEndTime ? 1 : 0));
+        dest.writeByte((byte) (isAutomaticCalories ? 1 : 0));
+        dest.writeByte((byte) (isAutomaticEndTime ? 1 : 0));
     }
 }

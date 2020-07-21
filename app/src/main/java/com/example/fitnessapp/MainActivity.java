@@ -11,7 +11,10 @@ import com.example.fitnessapp.models.FitnessActivity;
 import com.example.fitnessapp.adapters.FitnessActivityRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
                     mTextMessage.setText(R.string.title_dashboard);
                     mainRecyclerView.setVisibility(View.GONE);
                     return true;
-                case R.id.navigation_notifications:
-                    mTextMessage.setText(R.string.title_notifications);
+                case R.id.navigation_profile:
+                    mTextMessage.setText(R.string.title_profile);
                     mainRecyclerView.setVisibility(View.GONE);
                     return true;
             }
