@@ -166,13 +166,13 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
     /**
      * Constructor.
      *
-     * @param title            The title of the activity.
-     * @param description      The description of the activity.
-     * @param start            When the activity starts.
-     * @param end              When the activity ends.
-     * @param isAutoInputTitle True if the title should be the same as the activity.
+     * @param title               The title of the activity.
+     * @param description         The description of the activity.
+     * @param start               When the activity starts.
+     * @param end                 When the activity ends.
+     * @param isAutoInputTitle    True if the title should be the same as the activity.
      * @param isAutomaticCalories True if the calorie input is manual.
-     * @param isManualEndTime  True if the activity's ending time is manual.
+     * @param isManualEndTime     True if the activity's ending time is manual.
      */
     public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isAutomaticCalories, boolean isManualEndTime) {
         this.title = title;

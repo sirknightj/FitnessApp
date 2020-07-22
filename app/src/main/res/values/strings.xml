@@ -23,4 +23,13 @@
     <string name="accessibility_manual_override_calories">Checking this box will let you manually override the calories burned.</string>
     <string name="accessibility_calories_box">Input how many calories you burned here. Automatic unless you check the box to the right.</string>
     <string name="tooltip_automatic_input">Input the value automatically.</string>
+    <string name="hint_weight_input">Weight (lbs)</string>
+    <string name="hint_height_input">Height (in)</string>
+    <string name="hint_age_input">Age (yrs)</string>
+    <string name="error_not_enough_data">Not enough data</string>
+    <string name="menu_option_clear">Clear</string>
+    <string name="description_weight">Weight</string>
+    <string name="description_height">Height</string>
+    <string name="description_age">Age</string>
+    <string name="description_bmi">BMI</string>
 </resources>

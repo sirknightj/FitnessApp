@@ -2,8 +2,10 @@ package com.example.fitnessapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +13,8 @@ import com.example.fitnessapp.models.FitnessActivity;
 import com.example.fitnessapp.adapters.FitnessActivityRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.FileDescriptor;
+import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -18,8 +22,12 @@ import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
     private RecyclerView mainRecyclerView;
     private List<FitnessActivity> fitnessActivities;
     private FitnessActivityRecyclerAdapter fitnessActivityRecyclerAdapter;
+    private FrameLayout main_fragment_holder;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -43,14 +52,18 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
                     mainRecyclerView.setVisibility(View.VISIBLE);
+                    main_fragment_holder.setVisibility(View.GONE);
                     return true;
                 case R.id.navigation_dashboard:
                     mTextMessage.setText(R.string.title_dashboard);
                     mainRecyclerView.setVisibility(View.GONE);
+                    main_fragment_holder.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_profile:
                     mTextMessage.setText(R.string.title_profile);
                     mainRecyclerView.setVisibility(View.GONE);
+                    main_fragment_holder.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_holder, new ProfileFragment()).commit();
                     return true;
             }
             return false;
@@ -64,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
 
         mTextMessage = findViewById(R.id.message);
         mainRecyclerView = findViewById(R.id.main_recycler_view);
+        main_fragment_holder = findViewById(R.id.main_fragment_holder);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
@@ -75,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
 
         try {
             FitActivityData.initializeData(getResources());
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             Toast toast = Toast.makeText(getApplicationContext(), "ERROR: FILE NOT FOUND", Toast.LENGTH_LONG);
             toast.show();
@@ -104,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
 
     /**
      * Called whenever one of the fitness_activity_item's are clicked.
+     *
      * @param position the position of the clicked fitness_activity_item in the recyclerView.
      */
     @Override
