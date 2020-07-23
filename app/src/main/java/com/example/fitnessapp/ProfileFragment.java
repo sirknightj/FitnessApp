@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 /**
  * This is the "edit my profile" screen. It lets you edit your height, weight, and age.
+ * It also saves it into the app's preferences whenever any of these elements are changed.
  */
 public class ProfileFragment extends Fragment {
 

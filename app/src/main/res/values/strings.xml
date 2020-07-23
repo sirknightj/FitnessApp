@@ -32,4 +32,6 @@
     <string name="description_height">Height</string>
     <string name="description_age">Age</string>
     <string name="description_bmi">BMI</string>
+    <string name="btnText_save">Save</string>
+    <string name="btnText_create">Create</string>
 </resources>

@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
     private void insertTestingData() {
         fitnessActivities = new ArrayList<>();
         for (int i = 0; i < 60; i++) {
-            fitnessActivities.add(new FitnessActivity("dab" + i, "desc", "1:00 pm", "2:00 pm"));
+            fitnessActivities.add(new FitnessActivity("dab" + i, "desc", "7/22/20 5:33 PM", "7/22/20 5:43 PM", "Jumping rope"));
         }
     }
 

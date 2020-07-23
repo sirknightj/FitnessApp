@@ -140,7 +140,10 @@ public class EditFitnessActivityActivity extends AppCompatActivity {
         check_manual_calories.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                // TODO: CREATE METHOD TO CALCULATE CALORIES!
+                input_calories.setEnabled(!isChecked);
+                if(isChecked) {
+                    calculateCalories();
+                }
             }
         });
 
@@ -201,12 +204,14 @@ public class EditFitnessActivityActivity extends AppCompatActivity {
     private void updateText() {
         input_title.setText(selectedFitnessActivity.getTitle());
         input_description.setText(selectedFitnessActivity.getDescription());
-        input_duration.setText(selectedFitnessActivity.getStart() + " " + selectedFitnessActivity.getEnd());
+        input_duration.setText("" + selectedFitnessActivity.getDuration());
         input_calories.setText("" + selectedFitnessActivity.getCalories());
 
         check_auto_fill_title.setChecked(selectedFitnessActivity.isAutoInputTitle());
         check_manual_calories.setChecked(selectedFitnessActivity.isAutomaticCalories());
         check_ending_now.setChecked(selectedFitnessActivity.isAutomaticEndTime());
+
+        input_fitness_activity_spinner.setSelection(FitActivityData.find(selectedFitnessActivity.getActivity()));
     }
 
     /**
@@ -221,5 +226,16 @@ public class EditFitnessActivityActivity extends AppCompatActivity {
      */
     private void setTimeNow() {
         input_end_time.setText(FitnessActivity.DATE_FORMAT.format(Calendar.getInstance().getTime()));
+    }
+
+    private void calculateCalories() {
+        double calories = 0;
+        double duration = 0;
+        //TODO: CREATE METHOD TO UPDATE CALORIES
+        if(input_duration.getText().toString().length() > 0) {
+            duration = Double.parseDouble(input_duration.getText().toString());
+        }
+        calories = duration * FitActivityData.getMetData().get(input_fitness_activity_spinner.getSelectedItem().toString());
+        input_calories.setText(Double.toString(calories));
     }
 }

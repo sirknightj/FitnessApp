@@ -3,8 +3,11 @@ package com.example.fitnessapp.models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 /**
  * This is the model for a fitness activity.
@@ -12,9 +15,10 @@ import java.time.format.DateTimeFormatter;
 public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yy h:m a");
-    private String title, description, start, end;
+    private String title, description, start, end, activity;
     private int calories;
     private boolean isAutoInputTitle, isAutomaticCalories, isAutomaticEndTime;
+    private Date dateStart, dateEnd;
 
     public boolean isAutoInputTitle() {
         return isAutoInputTitle;
@@ -40,6 +44,14 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         return isAutomaticEndTime;
     }
 
+    public String getActivity() {
+        return activity;
+    }
+
+    public void setActivity(String activity) {
+        this.activity = activity;
+    }
+
     /**
      * Constructor. Creates FitnessActivityData when passed in a Parcel.
      *
@@ -51,6 +63,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         start = in.readString();
         end = in.readString();
         calories = in.readInt();
+        activity = in.readString();
         isAutoInputTitle = in.readByte() != 0;
         isAutomaticCalories = in.readByte() != 0;
         isAutomaticEndTime = in.readByte() != 0;
@@ -152,6 +165,33 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
     }
 
     /**
+     * @return The duration of this fitness activity, in minutes. Returns -1 if there are any errors.
+     */
+    public double getDuration() {
+        try {
+            initDates();
+            return TimeUnit.MILLISECONDS.toMinutes(dateEnd.getTime() - dateStart.getTime());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
+    }
+
+    /**
+     * Initializes the dates, if needed.
+     *
+     * @throws ParseException if the String start or end is not in the correct format.
+     */
+    private void initDates() throws ParseException {
+        if (dateStart == null) {
+            dateStart = DATE_FORMAT.parse(start);
+        }
+        if (dateEnd == null) {
+            dateEnd = DATE_FORMAT.parse(end);
+        }
+    }
+
+    /**
      * Constructor. Creates a fitness activity with the creator's preferences.
      *
      * @param title       The title of the activity.
@@ -159,8 +199,8 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      * @param start       When the activity starts.
      * @param end         When the activity ends.
      */
-    public FitnessActivity(String title, String description, String start, String end) {
-        this(title, description, start, end, true, true, true);
+    public FitnessActivity(String title, String description, String start, String end, String activity) {
+        this(title, description, start, end, true, true, true, activity);
     }
 
     /**
@@ -173,8 +213,9 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      * @param isAutoInputTitle    True if the title should be the same as the activity.
      * @param isAutomaticCalories True if the calorie input is manual.
      * @param isManualEndTime     True if the activity's ending time is manual.
+     * @param activity            The fitness activity classifier.
      */
-    public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isAutomaticCalories, boolean isManualEndTime) {
+    public FitnessActivity(String title, String description, String start, String end, boolean isAutoInputTitle, boolean isAutomaticCalories, boolean isManualEndTime, String activity) {
         this.title = title;
         this.description = description;
         this.start = start;
@@ -182,6 +223,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         this.isAutoInputTitle = isAutoInputTitle;
         this.isAutomaticCalories = isAutomaticCalories;
         this.isAutomaticEndTime = isManualEndTime;
+        this.activity = activity;
         calories = 0; // TODO: Use formula to find calories
     }
 
@@ -234,6 +276,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
         dest.writeString(start);
         dest.writeString(end);
         dest.writeInt(calories);
+        dest.writeString(activity);
         dest.writeByte((byte) (isAutoInputTitle ? 1 : 0));
         dest.writeByte((byte) (isAutomaticCalories ? 1 : 0));
         dest.writeByte((byte) (isAutomaticEndTime ? 1 : 0));

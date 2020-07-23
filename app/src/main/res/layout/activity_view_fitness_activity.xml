@@ -75,6 +75,30 @@
             android:text="Description"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/fitactivity_duration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:text="Duration"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/fitactivity_intensity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:text="Intensity"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/fitactivity_hidden_details"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="2dp"
+            android:text="MET DATA"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -4,18 +4,29 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fitnessapp.models.FitnessActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+
+/**
+ * This is the screen for viewing your fitness activity, after tapping it from the RecyclerView
+ * on the MainActivity.
+ */
 public class ViewFitnessActivityActivity extends AppCompatActivity {
 
     public static final String FROM_PARCEL = "editing_fitness_activity";
+    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yy");
 
-    private TextView fitactivity_title, fitactivity_description, fitactivity_timestamp, fitactivity_date, fitactivity_calories;
+    private TextView fitactivity_title, fitactivity_description, fitactivity_timestamp,
+            fitactivity_date, fitactivity_calories;
     private FloatingActionButton edit_floating_action_button;
     private FitnessActivity selectedFitnessActivity;
 
@@ -62,7 +73,13 @@ public class ViewFitnessActivityActivity extends AppCompatActivity {
     private void updateText() {
         fitactivity_title.setText(selectedFitnessActivity.getTitle());
         fitactivity_description.setText(selectedFitnessActivity.getDescription());
-        fitactivity_timestamp.setText(selectedFitnessActivity.getStart() + " " + selectedFitnessActivity.getEnd());
+        try {
+            fitactivity_date.setText(DATE_FORMAT.format(FitnessActivity.DATE_FORMAT.parse(selectedFitnessActivity.getEnd())));
+        } catch (Exception e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Date Reading Error", Toast.LENGTH_LONG).show();
+        }
+        fitactivity_timestamp.setText(selectedFitnessActivity.getEnd());
         fitactivity_calories.setText(selectedFitnessActivity.getCalories() + " Cal");
     }
 
