@@ -10,6 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * This class manages all of the Fitness Activity metabolic equivalent data.
@@ -26,7 +27,7 @@ public final class FitActivityData {
      * @throws IOException If the resource file is not found, or is modified while reading.
      */
     public static void initializeData(Resources resources) throws IOException {
-        metData = new LinkedHashMap<>();
+        metData = new TreeMap<>();
         InputStream inputStream = resources.openRawResource(R.raw.fit_activity_met_data);
         BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
         String line = reader.readLine();
@@ -36,7 +37,6 @@ public final class FitActivityData {
             line = reader.readLine();
         }
         metData = Collections.unmodifiableMap(metData);
-        System.out.println(metData.toString());
     }
 
     /**

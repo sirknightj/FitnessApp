@@ -34,4 +34,7 @@
     <string name="description_bmi">BMI</string>
     <string name="btnText_save">Save</string>
     <string name="btnText_create">Create</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

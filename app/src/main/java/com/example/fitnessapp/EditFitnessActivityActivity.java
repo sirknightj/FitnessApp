@@ -211,6 +211,9 @@ public class EditFitnessActivityActivity extends AppCompatActivity {
         check_manual_calories.setChecked(selectedFitnessActivity.isAutomaticCalories());
         check_ending_now.setChecked(selectedFitnessActivity.isAutomaticEndTime());
 
+        System.out.println(selectedFitnessActivity.getActivity());
+        System.out.println(FitActivityData.find(selectedFitnessActivity.getActivity()));
+
         input_fitness_activity_spinner.setSelection(FitActivityData.find(selectedFitnessActivity.getActivity()));
     }
 

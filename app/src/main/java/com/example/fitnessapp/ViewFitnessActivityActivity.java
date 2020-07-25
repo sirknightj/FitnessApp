@@ -26,7 +26,7 @@ public class ViewFitnessActivityActivity extends AppCompatActivity {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("M/d/yy");
 
     private TextView fitactivity_title, fitactivity_description, fitactivity_timestamp,
-            fitactivity_date, fitactivity_calories;
+            fitactivity_date, fitactivity_calories, fitactivity_activity;
     private FloatingActionButton edit_floating_action_button;
     private FitnessActivity selectedFitnessActivity;
 
@@ -40,6 +40,7 @@ public class ViewFitnessActivityActivity extends AppCompatActivity {
         System.out.println(selectedFitnessActivity.getTitle());
 
         fitactivity_title = findViewById(R.id.fitactivity_title);
+        fitactivity_activity = findViewById(R.id.fitactivity_activity);
         fitactivity_description = findViewById(R.id.fitactivity_description);
         fitactivity_timestamp = findViewById(R.id.fitactivity_timestamp);
         fitactivity_date = findViewById(R.id.fitactivity_date);
@@ -72,6 +73,7 @@ public class ViewFitnessActivityActivity extends AppCompatActivity {
      */
     private void updateText() {
         fitactivity_title.setText(selectedFitnessActivity.getTitle());
+        fitactivity_activity.setText(selectedFitnessActivity.getActivity());
         fitactivity_description.setText(selectedFitnessActivity.getDescription());
         try {
             fitactivity_date.setText(DATE_FORMAT.format(FitnessActivity.DATE_FORMAT.parse(selectedFitnessActivity.getEnd())));

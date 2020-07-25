@@ -250,7 +250,7 @@ public class FitnessActivity implements Comparable<FitnessActivity>, Parcelable 
      */
     @Override
     public int compareTo(FitnessActivity o) {
-        return getStart().compareTo(o.getStart());
+        return getEnd().compareTo(o.getEnd());
     }
 
     /**

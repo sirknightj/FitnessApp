@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.fitnessapp.models.FitnessActivity;
 import com.example.fitnessapp.adapters.FitnessActivityRecyclerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.jjoe64.graphview.series.DataPoint;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
                     mTextMessage.setText(R.string.title_dashboard);
                     mainRecyclerView.setVisibility(View.GONE);
                     main_fragment_holder.setVisibility(View.VISIBLE);
+                    getSupportFragmentManager().beginTransaction().replace(R.id.main_fragment_holder, DashboardFragment.newInstance(fitnessActivities)).commit();
                     return true;
                 case R.id.navigation_profile:
                     mTextMessage.setText(R.string.title_profile);
@@ -102,8 +104,16 @@ public class MainActivity extends AppCompatActivity implements FitnessActivityRe
      */
     private void insertTestingData() {
         fitnessActivities = new ArrayList<>();
-        for (int i = 0; i < 60; i++) {
-            fitnessActivities.add(new FitnessActivity("dab" + i, "desc", "7/22/20 5:33 PM", "7/22/20 5:43 PM", "Jumping rope"));
+        for (int i = 0; i < 1; i++) {
+            FitnessActivity dab = new FitnessActivity("dab" + i, "desc", "7/22/20 5:33 PM", "7/22/20 5:43 PM", "Jumping rope");
+            dab.setCalories(5);
+            FitnessActivity asdf = new FitnessActivity("dab2", "oooooo", "7/20/20 5:33 PM", "7/20/20 5:43 PM", "Jumping rope");
+            asdf.setCalories(10);
+            FitnessActivity asdsf = new FitnessActivity("dab2", "ooooooooooo", "7/23/20 5:33 PM", "7/23/20 5:43 PM", "Jumping rope");
+            asdsf.setCalories(10);
+            fitnessActivities.add(dab);
+            fitnessActivities.add(asdf);
+            fitnessActivities.add(asdsf);
         }
     }
 
